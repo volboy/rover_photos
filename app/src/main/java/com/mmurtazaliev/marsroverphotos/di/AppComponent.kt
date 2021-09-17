@@ -10,7 +10,7 @@ import dagger.Component
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun injectMainActivity(mainActivity: MainActivity)
+    fun getMainComponent():MainComponent
 
     @Component.Builder
     interface MainAppBuilder {

@@ -32,14 +32,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var photoRepository: PhotoRepository
 
 
-
     private val flexboxLayoutManager = FlexboxLayoutManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //val databaseHelper = appComponent.getDatabaseHelper()
         //val networkUtils = appComponent.getNetworkUtils()
-        appComponent.injectMainActivity(this)
+        appComponent.getMainComponent().injectMainActivity(this)
         val adapter = PhotosAdapter(displayMetrics.widthPixels)
         val photoRV: RecyclerView = findViewById(R.id.photoRV)
         flexboxLayoutManager.alignItems = AlignItems.FLEX_START
