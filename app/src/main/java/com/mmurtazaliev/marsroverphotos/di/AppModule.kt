@@ -1,5 +1,6 @@
 package com.mmurtazaliev.marsroverphotos.di
 
+import android.content.Context
 import android.util.Log
 import com.mmurtazaliev.marsroverphotos.api.NasaApi
 import com.mmurtazaliev.marsroverphotos.repository.PhotoRepository
@@ -15,12 +16,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module(includes = [StorageModule::class, NetworkModule::class])
-class AppModule {
-
-    @Provides
-    fun providePhotoRepository(nasaApi: NasaApi): PhotoRepository {
-        return PhotoRepository(nasaApi)
-    }
+class AppModule() {
 
     @Provides
     fun provideNasaApi(): NasaApi {
