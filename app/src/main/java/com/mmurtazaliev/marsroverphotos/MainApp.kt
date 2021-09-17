@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.DisplayMetrics
 import com.mmurtazaliev.marsroverphotos.api.NasaApi
 import com.mmurtazaliev.marsroverphotos.di.AppComponent
+import com.mmurtazaliev.marsroverphotos.di.AppModule
 import com.mmurtazaliev.marsroverphotos.di.DaggerAppComponent
 
 class MainApp : Application() {
@@ -13,7 +14,10 @@ class MainApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(this))
+            .build()
     }
 }
 
