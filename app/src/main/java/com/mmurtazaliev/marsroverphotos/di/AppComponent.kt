@@ -14,7 +14,7 @@ interface AppComponent {
     @Component.Builder
     interface MainAppBuilder {
         fun buildAppComponent(): AppComponent
-        fun appModule(context: Context): MainAppBuilder
+        fun appModule(appModule: AppModule): MainAppBuilder
     }
 }
 
