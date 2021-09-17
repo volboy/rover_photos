@@ -16,7 +16,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module(includes = [StorageModule::class, NetworkModule::class])
-class AppModule(private val context: Context) {
+class AppModule() {
 
     @Provides
     fun provideNasaApi(): NasaApi {
