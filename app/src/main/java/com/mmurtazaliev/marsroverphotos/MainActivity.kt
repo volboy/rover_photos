@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import com.mmurtazaliev.marsroverphotos.api.NasaApi
+import com.mmurtazaliev.marsroverphotos.di.MainComponent
 import com.mmurtazaliev.marsroverphotos.repository.PhotoRepository
-import com.mmurtazaliev.marsroverphotos.viewmodel.DatabaseHelper
-import com.mmurtazaliev.marsroverphotos.viewmodel.NetworkUtils
 import com.mmurtazaliev.marsroverphotos.viewmodel.ViewModelFactory
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -23,28 +21,23 @@ import kotlin.math.roundToInt
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var databaseHelper: DatabaseHelper
-
-    @Inject
-    lateinit var networkUtils: NetworkUtils
-
-    @Inject
-    lateinit var photoRepository: PhotoRepository
+    lateinit var mainComponentBuilder: MainComponent.Builder
 
 
     private val flexboxLayoutManager = FlexboxLayoutManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //val databaseHelper = appComponent.getDatabaseHelper()
-        //val networkUtils = appComponent.getNetworkUtils()
-        appComponent.getMainComponent().injectMainActivity(this)
+        appComponent.injectMainActivity(this)
+        val mainComponent = mainComponentBuilder
+            .id(0)
+            .build()
         val adapter = PhotosAdapter(displayMetrics.widthPixels)
         val photoRV: RecyclerView = findViewById(R.id.photoRV)
         flexboxLayoutManager.alignItems = AlignItems.FLEX_START
         flexboxLayoutManager.justifyContent = JustifyContent.FLEX_START
         photoRV.layoutManager = flexboxLayoutManager
-        val viewModelFactory = ViewModelFactory(photoRepository)
+        val viewModelFactory = ViewModelFactory(mainComponent.providePhotoRepository())
         val model = ViewModelProvider(this, viewModelFactory)
             .get(MainViewModel::class.java)
 

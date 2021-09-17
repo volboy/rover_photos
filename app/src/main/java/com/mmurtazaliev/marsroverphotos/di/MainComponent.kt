@@ -1,10 +1,21 @@
 package com.mmurtazaliev.marsroverphotos.di
 
 import com.mmurtazaliev.marsroverphotos.MainActivity
+import com.mmurtazaliev.marsroverphotos.repository.PhotoRepository
+import dagger.BindsInstance
 import dagger.Subcomponent
 
-@Subcomponent(modules = [AppModule::class])
+@Subcomponent
 interface MainComponent {
 
-    fun injectMainActivity(mainActivity: MainActivity)
+    @Subcomponent.Builder
+    interface Builder {
+
+        fun build(): MainComponent
+
+        @BindsInstance
+        fun id(id: Long): Builder
+    }
+
+    fun providePhotoRepository():PhotoRepository
 }

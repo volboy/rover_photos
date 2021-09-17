@@ -8,6 +8,7 @@ import com.mmurtazaliev.marsroverphotos.di.AppComponent
 import com.mmurtazaliev.marsroverphotos.di.AppModule
 import com.mmurtazaliev.marsroverphotos.di.DaggerAppComponent
 
+
 class MainApp : Application() {
 
     lateinit var appComponent: AppComponent

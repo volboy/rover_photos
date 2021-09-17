@@ -15,8 +15,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-@Module(includes = [StorageModule::class, NetworkModule::class])
-class AppModule() {
+@Module(subcomponents = [MainComponent::class])
+class AppModule {
 
     @Provides
     fun provideNasaApi(): NasaApi {
@@ -36,21 +36,5 @@ class AppModule() {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(NasaApi::class.java)
-    }
-}
-
-@Module
-class StorageModule {
-    @Provides
-    fun provideDatabaseHelper(): DatabaseHelper {
-        return DatabaseHelper()
-    }
-}
-
-@Module
-class NetworkModule {
-    @Provides
-    fun provideNetworkUtils(): NetworkUtils {
-        return NetworkUtils()
     }
 }

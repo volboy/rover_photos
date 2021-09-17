@@ -10,14 +10,14 @@ import dagger.Component
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun getMainComponent():MainComponent
-
     @Component.Builder
     interface MainAppBuilder {
         fun buildAppComponent(): AppComponent
 
         @BindsInstance
-        fun context(context: Context):MainAppBuilder
+        fun context(context: Context): MainAppBuilder
     }
+
+    fun injectMainActivity(activity: MainActivity)
 }
 
