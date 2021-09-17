@@ -19,6 +19,11 @@ import javax.inject.Singleton
 class AppModule(private val context: Context) {
 
     @Provides
+    fun getAppContext(): Context {
+        return context
+    }
+
+    @Provides
     fun provideNasaApi(): NasaApi {
 
         val baseUrl = "https://api.nasa.gov/mars-photos/api/v1/"
