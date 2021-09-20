@@ -18,6 +18,7 @@ import javax.inject.Singleton
 @Module(subcomponents = [MainComponent::class])
 class AppModule {
 
+    @AppScope
     @Provides
     fun provideNasaApi(): NasaApi {
 

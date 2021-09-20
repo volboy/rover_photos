@@ -6,6 +6,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +15,6 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.mmurtazaliev.marsroverphotos.di.MainComponent
-import com.mmurtazaliev.marsroverphotos.repository.PhotoRepository
 import com.mmurtazaliev.marsroverphotos.viewmodel.ViewModelFactory
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         flexboxLayoutManager.alignItems = AlignItems.FLEX_START
         flexboxLayoutManager.justifyContent = JustifyContent.FLEX_START
         photoRV.layoutManager = flexboxLayoutManager
-        val viewModelFactory = ViewModelFactory(mainComponent.providePhotoRepository())
+        val viewModelFactory = ViewModelFactory(mainComponent.getPhotoRepository())
         val model = ViewModelProvider(this, viewModelFactory)
             .get(MainViewModel::class.java)
 
@@ -50,6 +51,21 @@ class MainActivity : AppCompatActivity() {
         model.errors.observe(this) { error ->
             Toast.makeText(this, "Error = $error", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_settings -> {
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }
 

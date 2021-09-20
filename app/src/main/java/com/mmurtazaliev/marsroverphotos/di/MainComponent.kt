@@ -5,6 +5,7 @@ import com.mmurtazaliev.marsroverphotos.repository.PhotoRepository
 import dagger.BindsInstance
 import dagger.Subcomponent
 
+@MainScope
 @Subcomponent
 interface MainComponent {
 
@@ -17,5 +18,5 @@ interface MainComponent {
         fun id(id: Long): Builder
     }
 
-    fun providePhotoRepository():PhotoRepository
+    fun getPhotoRepository():PhotoRepository
 }
