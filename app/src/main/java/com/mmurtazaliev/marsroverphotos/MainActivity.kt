@@ -24,13 +24,15 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var mainComponentBuilder: MainComponent.Builder
 
+    private lateinit var mainComponent: MainComponent
+
 
     private val flexboxLayoutManager = FlexboxLayoutManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appComponent.injectMainActivity(this)
-        val mainComponent = mainComponentBuilder
+        mainComponent = mainComponentBuilder
             .id(0)
             .build()
         val adapter = PhotosAdapter(displayMetrics.widthPixels)
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         flexboxLayoutManager.alignItems = AlignItems.FLEX_START
         flexboxLayoutManager.justifyContent = JustifyContent.FLEX_START
         photoRV.layoutManager = flexboxLayoutManager
-        val viewModelFactory = ViewModelFactory(mainComponent.getPhotoRepository())
+        val viewModelFactory = mainComponent.getViewModelFactory()
         val model = ViewModelProvider(this, viewModelFactory)
             .get(MainViewModel::class.java)
 
@@ -92,3 +94,6 @@ val Activity.screenSizeInDp: Point
         }
         return point
     }
+
+val Activity.mainComponent: MainComponent
+get() = mainComponent
