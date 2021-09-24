@@ -15,6 +15,7 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.mmurtazaliev.marsroverphotos.di.MainComponent
+import com.mmurtazaliev.marsroverphotos.ui.FiltersBottomSheet
 import com.mmurtazaliev.marsroverphotos.viewmodel.ViewModelFactory
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
+            FiltersBottomSheet().show(supportFragmentManager, FiltersBottomSheet.TAG)
             true
         }
         else -> {
@@ -96,4 +98,4 @@ val Activity.screenSizeInDp: Point
     }
 
 val Activity.mainComponent: MainComponent
-get() = mainComponent
+    get() = mainComponent

@@ -7,6 +7,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.flexbox.FlexboxLayout
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.mmurtazaliev.marsroverphotos.api.NasaApi
 import javax.inject.Inject
 
@@ -39,13 +41,23 @@ class PhotosAdapter(screenWidth: Int) : RecyclerView.Adapter<PhotosViewHolder>()
 class PhotosViewHolder(view: View, sizeImageView: Int) : RecyclerView.ViewHolder(view) {
 
     private val photoIV: ImageView = view.findViewById(R.id.photoIV)
+    private val containerFl: FrameLayout = view.findViewById(R.id.container)
 
     init {
         photoIV.setOnClickListener { }
         photoIV.layoutParams = FrameLayout.LayoutParams(sizeImageView, sizeImageView)
+
     }
 
     fun bind(item: NasaApi.Photo) {
+        if (adapterPosition == 1) {
+            val fl = FlexboxLayoutManager.LayoutParams(
+                FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+            )
+            fl.isWrapBefore = true
+            containerFl.layoutParams = fl
+        }
         Glide
             .with(photoIV)
             .load(item.imgSrc)

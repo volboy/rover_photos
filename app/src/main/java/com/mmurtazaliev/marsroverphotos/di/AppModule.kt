@@ -3,9 +3,6 @@ package com.mmurtazaliev.marsroverphotos.di
 import android.content.Context
 import android.util.Log
 import com.mmurtazaliev.marsroverphotos.api.NasaApi
-import com.mmurtazaliev.marsroverphotos.repository.PhotoRepository
-import com.mmurtazaliev.marsroverphotos.viewmodel.DatabaseHelper
-import com.mmurtazaliev.marsroverphotos.viewmodel.NetworkUtils
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull

@@ -3,4 +3,13 @@
     <string name="title_photo">photo</string>
     <string name="action_favorite">Add to favorite</string>
     <string name="settings">Settings</string>
+    <string name="rover_str">Rover</string>
+    <string name="curiosity_str">Curiosity</string>
+    <string name="banner_str">banner</string>
+    <string name="choose_data_str">Choose data</string>
+    <string-array name="rovers_array">
+        <item>Curiosity</item>
+        <item>Opportunity</item>
+        <item>Spirit</item>
+    </string-array>
 </resources>
