@@ -7,6 +7,7 @@
     <string name="curiosity_str">Curiosity</string>
     <string name="banner_str">banner</string>
     <string name="choose_data_str">Choose data</string>
+    <string name="continue_str">Continue</string>
     <string-array name="rovers_array">
         <item>Curiosity</item>
         <item>Opportunity</item>
