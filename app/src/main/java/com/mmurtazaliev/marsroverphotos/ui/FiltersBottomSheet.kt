@@ -26,7 +26,7 @@ class FiltersBottomSheet : BottomSheetDialogFragment(), AdapterView.OnItemSelect
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.filters_bottom_sheet_fragment, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_bottom_filters, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val roverSp: Spinner = view.findViewById(R.id.roverSp)

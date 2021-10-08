@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        appComponent.injectMainActivity(this)
+       /* appComponent.injectMainActivity(this)
         mainComponent = mainComponentBuilder
             .id(0)
             .build()
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
         else -> {
             super.onOptionsItemSelected(item)
-        }
+        }*/
 
     }
 
