@@ -13,7 +13,8 @@ import com.mmurtazaliev.marsroverphotos.api.NasaApi
 import javax.inject.Inject
 
 
-class PhotosAdapter(screenWidth: Int) : RecyclerView.Adapter<PhotosViewHolder>() {
+class PhotosAdapter(screenWidth: Int, private val photoOnClickListener: (id: Int) -> Unit) :
+    RecyclerView.Adapter<PhotosViewHolder>() {
 
     private var photos = listOf<NasaApi.Photo>()
     private var sizeImageView = 0
@@ -28,7 +29,7 @@ class PhotosAdapter(screenWidth: Int) : RecyclerView.Adapter<PhotosViewHolder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
-        return PhotosViewHolder(view, sizeImageView)
+        return PhotosViewHolder(view, sizeImageView, photoOnClickListener)
     }
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
@@ -38,26 +39,21 @@ class PhotosAdapter(screenWidth: Int) : RecyclerView.Adapter<PhotosViewHolder>()
     override fun getItemCount(): Int = photos.size
 }
 
-class PhotosViewHolder(view: View, sizeImageView: Int) : RecyclerView.ViewHolder(view) {
+class PhotosViewHolder(
+    view: View,
+    sizeImageView: Int,
+    private val photoOnClickListener: (id: Int) -> Unit
+) :
+    RecyclerView.ViewHolder(view) {
 
     private val photoIV: ImageView = view.findViewById(R.id.photoIV)
-    private val containerFl: FrameLayout = view.findViewById(R.id.container)
 
     init {
-        photoIV.setOnClickListener { }
         photoIV.layoutParams = FrameLayout.LayoutParams(sizeImageView, sizeImageView)
-
     }
 
     fun bind(item: NasaApi.Photo) {
-        if (adapterPosition == 1) {
-            val fl = FlexboxLayoutManager.LayoutParams(
-                FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
-                FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
-            )
-            fl.isWrapBefore = true
-            containerFl.layoutParams = fl
-        }
+        photoIV.setOnClickListener { photoOnClickListener.invoke(item.id) }
         Glide
             .with(photoIV)
             .load(item.imgSrc)

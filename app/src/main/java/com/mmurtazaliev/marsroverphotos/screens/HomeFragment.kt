@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.mmurtazaliev.marsroverphotos.MainViewModel
@@ -39,7 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             .build()
 
         val photoRv = view.findViewById<RecyclerView>(R.id.photoRv)
-        val adapter = PhotosAdapter(activity?.displayMetrics?.widthPixels ?: 300)
+        val adapter = PhotosAdapter(requireActivity().displayMetrics.widthPixels, this::goToPhoto)
         val flexboxLayoutManager = FlexboxLayoutManager(context)
         flexboxLayoutManager.alignItems = AlignItems.FLEX_START
         flexboxLayoutManager.justifyContent = JustifyContent.FLEX_START
@@ -57,5 +58,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         model.errors.observe(viewLifecycleOwner) { error ->
             Toast.makeText(context, "Error = $error", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun goToPhoto(id: Int) {
+        Toast.makeText(context, id.toString(), Toast.LENGTH_LONG).show()
     }
 }

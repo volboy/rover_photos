@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 interface NasaApi {
-    @GET("rovers/curiosity/photos?earth_date=2015-6-3&camera=fhaz&api_key=Hmt5EPZy7sG3ooyjwiWUh1pvVOhUVgv4chVgX5n7")
+    @GET("rovers/curiosity/photos?earth_date=2016-6-3&camera=fhaz&api_key=Hmt5EPZy7sG3ooyjwiWUh1pvVOhUVgv4chVgX5n7")
     suspend fun getCuriosityPhotos(): Response<Data>
 
     data class Data(
