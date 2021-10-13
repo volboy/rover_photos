@@ -30,8 +30,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var mainComponent: MainComponent
 
-    private val flexboxLayoutManager = FlexboxLayoutManager(context)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,6 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val photoRv = view.findViewById<RecyclerView>(R.id.photoRv)
         val adapter = PhotosAdapter(activity?.displayMetrics?.widthPixels ?: 300)
+        val flexboxLayoutManager = FlexboxLayoutManager(context)
         flexboxLayoutManager.alignItems = AlignItems.FLEX_START
         flexboxLayoutManager.justifyContent = JustifyContent.FLEX_START
         photoRv.layoutManager = flexboxLayoutManager
