@@ -27,33 +27,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainComponent: MainComponent
 
-
-    private val flexboxLayoutManager = FlexboxLayoutManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       /* appComponent.injectMainActivity(this)
-        mainComponent = mainComponentBuilder
-            .id(0)
-            .build()
-        val adapter = PhotosAdapter(displayMetrics.widthPixels)
-        val photoRV: RecyclerView = findViewById(R.id.photoRV)
-        flexboxLayoutManager.alignItems = AlignItems.FLEX_START
-        flexboxLayoutManager.justifyContent = JustifyContent.FLEX_START
-        photoRV.layoutManager = flexboxLayoutManager
-        val viewModelFactory = mainComponent.getViewModelFactory()
-        val model = ViewModelProvider(this, viewModelFactory)
-            .get(MainViewModel::class.java)
-
-        model.photos.observe(this) {
-            adapter.setItems(it)
-            photoRV.adapter = adapter
-            Toast.makeText(this, "Size=${it.size}", Toast.LENGTH_LONG).show()
-        }
-
-        model.errors.observe(this) { error ->
-            Toast.makeText(this, "Error = $error", Toast.LENGTH_LONG).show()
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
@@ -63,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
         else -> {
             super.onOptionsItemSelected(item)
-        }*/
+        }
 
     }
 

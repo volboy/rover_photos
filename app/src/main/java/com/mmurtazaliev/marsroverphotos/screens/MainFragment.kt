@@ -5,17 +5,22 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mmurtazaliev.marsroverphotos.R
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<AppCompatTextView>(R.id.mainFragmentTitleTv).setOnClickListener {
-            findNavController().navigate(
-                R.id.action_mainFragment_to_homeFragment,
-                bundleOf(HomeFragment.USER_NAME_KEY to "Mikhail")
-            )
-        }
+
+        val bottomNavigateView = view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val navController =
+            ((childFragmentManager).findFragmentById(R.id.mainFragmentContainer) as NavHostFragment).navController
+        bottomNavigateView.setupWithNavController(navController)
     }
 }
